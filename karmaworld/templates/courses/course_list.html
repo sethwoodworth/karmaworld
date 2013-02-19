@@ -14,8 +14,8 @@
 
 {% block pagescripts %}
 <script src="{{ STATIC_URL }}js/jquery.tablesorter.min.js"></script>
-<script src="{{ STATIC_URL }}js/jquery.tablesorter.widgets.min.js"></script>
-<script src="{{ STATIC_URL }}js/jquery.tablesorter.pager.min.js"></script>
+<script src="{{ STATIC_URL }}js/jquery.tablesorter.widgets.js"></script>
+<script src="{{ STATIC_URL }}js/jquery.tablesorter.pager.js"></script>
 <script src="{{ STATIC_URL }}js/bootstrap-modal.js" ></script>
 <script src="{{ STATIC_URL }}js/sort-tables.js"></script>
 {% endblock %}
@@ -57,13 +57,24 @@
         </form>
       </div>
       <!-- Main course table -->
+      <div style="width: 100%;">
+        <input type="search" placeholder="Start typing a school or course name...">
+        </input>
+      </div>
       <table id="course_list" class="tablesorter responsive">
+        <colgroup> <!-- specify col widths -->
+          <col span="1" style="width: 15%">
+          <col span="1" style="width: 43%">
+          <col span="1" style="width: 15%">
+          <col span="1" style="width: 5%">
+          <col span="1" style="width: 22%">
+        </colgroup>
         <thead>
           <tr>
             <th> School </th>
             <th> Course Name </th>
             <th> Instructor </th>
-            <th> Notes # </th>
+            <th> Notes </th>
             <th> Last Updated </th>
           </tr>
         </thead>
