@@ -10,6 +10,7 @@
  */
 /*jshint browser:true, jquery:true, unused:false, loopfunc:true */
 /*global jQuery: false, localStorage: false, navigator: false */
+xxx = null;
 ;(function($){
 "use strict";
 $.tablesorter = $.tablesorter || {};
@@ -294,6 +295,8 @@ $.tablesorter.addWidget({
 	id: "filter",
 	format: function(table){
 		if (table.config.parsers && !$(table).hasClass('hasFilters')){
+			console.log('addWidget filter format', table);
+			console.log(table.config);
 			var i, j, k, l, val, ff, x, xi, st, sel, str,
 			ft, ft2, $th, rg, s, t, dis, col,
 			last = '', // save last filter search
@@ -320,6 +323,7 @@ $.tablesorter.addWidget({
 			time, timer,
 
 			// dig fer gold
+			// cjh: this is called when we want to actually search
 			checkFilters = function(filter){
 				var arry = $.isArray(filter),
 					$inpts = $t.find('thead').eq(0).children('tr').find('select.' + css + ', input.' + css),
@@ -352,12 +356,23 @@ $.tablesorter.addWidget({
 					return false;
 				}
 			},
+			// CJH: do the search This actually happens when we type in the search box
+			// CJH:
+			// filter is undefined. why?
+			// v is an array with one string for each column
+			// cv is just a string containing all the strings from the 'v' array concatanated
 			findRows = function(filter, v, cv){
 				var $tb, $tr, $td, cr, r, l, ff, time, arry;
 				if (c.debug) { time = new Date(); }
+				console.log('b', b);
+				console.log('filter', filter);
+				console.log('v', v);
+				console.log('cv', cv);
 
 				for (k = 0; k < b.length; k++ ){
+					//CJH: tb is the tablebody. This is a jQuery object I believe
 					$tb = $.tablesorter.processTbody(table, b.eq(k), true);
+					//CJH: tr is the table rows jquery object
 					$tr = $tb.children('tr');
 					l = $tr.length;
 					if (cv === '' || wo.filter_serversideFiltering){
@@ -500,6 +515,9 @@ $.tablesorter.addWidget({
 			if (c.debug){
 				time = new Date();
 			}
+
+			// CJH: Here is where we actually add the filter search boxes
+			// CJH: wo is widget options
 			wo.filter_ignoreCase = wo.filter_ignoreCase !== false; // set default filter_ignoreCase to true
 			wo.filter_useParsedData = wo.filter_useParsedData === true; // default is false
 			// don't build filter row if columnFilters is false or all columns are set to "filter-false" - issue #156
@@ -529,6 +547,9 @@ $.tablesorter.addWidget({
 				}
 				$t.find('thead').eq(0).append(t += '</tr>');
 			}
+			xxx = $t;
+			//CJH: $t is a jquery object matching the a set of DOM elements
+			//CJH: in this case, there is only one element in the DOM: the table
 			$t
 			// add .tsfilter namespace to all BUT search
 			.bind('addRows updateCell update appendCache search'.split(' ').join('.tsfilter '), function(e, filter){
