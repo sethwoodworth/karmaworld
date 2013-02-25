@@ -3,6 +3,7 @@
 # Copyright (C) 2012  FinalsClub Foundation
 """
 """
+# TODO: add test for default sort order
 
 import datetime
 
