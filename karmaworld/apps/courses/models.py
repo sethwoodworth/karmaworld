@@ -35,7 +35,7 @@ class School(models.Model):
 
     def save(self, *args, **kwargs):
         """ Save school and generate a slug if one doesn't exist """
-        if not self.slug:
+        if not self.slug and self.name:
             self.slug = defaultfilters.slugify(self.name)
         super(School, self).save(*args, **kwargs)
 
