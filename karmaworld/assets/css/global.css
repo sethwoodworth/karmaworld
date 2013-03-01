@@ -545,6 +545,12 @@ ul#course_menu li a
   color: white;
 }
 
+.site-tag
+{
+  display: block;
+  text-align: center;
+}
+
 .subhead
 {
   color: #F05A28;
