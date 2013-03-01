@@ -38,7 +38,7 @@ $(document).ready(function() {
     // Use out Ajax endpoing to populate the list
     //'sAjaxSource': "{% url 'api_course_list' %}" 
   });
-$('.dataTables_filter input').attr("placeholder", "Search for a class");
+$('.dataTables_filter input').attr("placeholder", "Search for a course to browse or upload");
 });
 </script>
 {% endblock %}
@@ -49,20 +49,6 @@ $('.dataTables_filter input').attr("placeholder", "Search for a class");
 
 {% block content %}
 <section id="home_content">
-  <div id="page_header" class="hero_gradient_bar">
-    <div class="row">
-      <div id="subhead" class="twelve columns">
-        <div class="row">
-          Share and access a growing database of college lecture notes
-        </div>
-        <div class="row">
-          <div id="page_instruction" class="twelve columns center">
-            Choose a course to browse or upload
-          </div> 
-        </div> <!-- .row -->
-      </div><!-- #subhead -->
-    </div> <!-- .row -->
-  </div> <!-- #page_header -->
   <div class="row">
     <div class="ten columns offset-by-one">
       <!-- Main course table -->
